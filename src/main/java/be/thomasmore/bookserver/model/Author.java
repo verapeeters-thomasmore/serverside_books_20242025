@@ -1,5 +1,7 @@
 package be.thomasmore.bookserver.model;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -18,7 +20,13 @@ public class Author {
     @Id
     private int id;
 
+    @NotBlank(message = "Author name should not be blank")
+    @NotNull
     private String name;
+
+    private String country;
+    @Column(length=1024)
+    private String description;
 
     @ManyToMany(mappedBy = "authors", fetch = FetchType.LAZY)
     private Set<Book> books;
@@ -26,5 +34,7 @@ public class Author {
     public Author(int id) {
         this.id = id;
     }
+
+
 
 }
