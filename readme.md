@@ -1,10 +1,10 @@
 ###demo eindresultaat
-https://serverside-books-wgfzjm6hca-ew.a.run.app/
+* zie url op canvas 
 * login with vera/vera, marie/password, admin/admin
 * ... or signup to register as a new user
 
 ###you need:
-* server: java 1.17 (on PATH)
+* server: java 1.18 (on PATH)
 * frontend: node (v16.17.0) and npm (8.15.1) (on PATH)
 * import this repo in intellij (as maven project)
 * repo contains server (in .) and client (in ./src/main/frontend)
@@ -30,6 +30,7 @@ https://serverside-books-wgfzjm6hca-ew.a.run.app/
       * csrf-protection
       * copy value van XSRF-TOKEN Cookie in de Header X-XSRF-TOKEN
       * this is now done automatically in this collection - you only have to create an environment first (eg dev)
+    * important: always keep postman colletion up-to-date in the repo 
   * client is served by server
     * on index.html:  http://localhost:8080/
     * but you must do (at least) a "maven compile" first to make this work
