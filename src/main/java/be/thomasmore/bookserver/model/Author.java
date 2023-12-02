@@ -24,10 +24,6 @@ public class Author {
     @NotNull
     private String name;
 
-    private String country;
-    @Column(length=1024)
-    private String description;
-
     @ManyToMany(mappedBy = "authors", fetch = FetchType.LAZY)
     private Set<Book> books;
 
