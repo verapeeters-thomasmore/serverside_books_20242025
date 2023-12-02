@@ -42,24 +42,13 @@ public class BookService {
                 .collect(Collectors.toList());
     }
 
-    private List<BookDTO> findBooksSameAuthors(Collection<Author> authors, int id) {
-        List<Book> booksSameAuthors = bookRepository.findDistinctByAuthorsInAndIdNot(authors, id);
-        return booksSameAuthors.stream()
-                .map(b -> bookDTOConverter.convertToDto(b))
-                .collect(Collectors.toList());
-    }
-
     public BookDetailedDTO findOne(int id) {
         final Optional<Book> book = bookRepository.findById(id);
         if (book.isEmpty())
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
                     String.format("Book with id %d does not exist.", id));
 
-        final BookDetailedDTO bookDetailedDTO = bookDetailedDTOConverter.convertToDto(book.get());
-
-        List<BookDTO> booksDTO = findBooksSameAuthors(book.get().getAuthors(), book.get().getId());
-        bookDetailedDTO.setBooksSameAuthors(booksDTO);
-        return bookDetailedDTO;
+        return bookDetailedDTOConverter.convertToDto(book.get());
     }
 
     public List<AuthorDTO> authorsForBook(int bookId) {
@@ -105,7 +94,6 @@ public class BookService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
                     String.format("Book with id %d not found.", id));
 
-        //only relation is updated (empty author objects only containing id)
         Book book = bookFromDb.get();
         List<Author> authorIdObjects = (authorIds != null)
                 ? authorIds.stream().map(Author::new).collect(Collectors.toList())
