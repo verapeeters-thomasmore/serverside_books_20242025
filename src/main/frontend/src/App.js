@@ -6,7 +6,7 @@ import {MessageProvider} from "./contexts/messagecontext";
 import {AuthenticationProvider} from "./contexts/authenticationcontext";
 import {IconContext} from "react-icons";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
-import {BrowserRouter, Outlet, Route, Routes} from "react-router-dom";
+import {HashRouter, Outlet, Route, Routes} from "react-router-dom";
 import {LoginPage} from "./pages/auth/LoginPage";
 import {SignupPage} from "./pages/auth/SignupPage";
 import {BookListPage} from "./pages/book/BookListPage";
@@ -40,7 +40,7 @@ function MainLayout() {
 function ProvidedApp() {
     return (
         <div className="App">
-            <BrowserRouter>
+            <HashRouter>
                 <Routes>
                     <Route path="/" element={<MainLayout/>}>
                         <Route index element={<BookListPage/>}/>
@@ -60,7 +60,7 @@ function ProvidedApp() {
                         </Route>
                     </Route>
                 </Routes>
-            </BrowserRouter>
+            </HashRouter>
         </div>
     );
 }
