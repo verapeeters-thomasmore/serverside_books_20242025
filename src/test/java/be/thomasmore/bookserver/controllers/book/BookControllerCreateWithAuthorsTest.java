@@ -1,4 +1,4 @@
-package be.thomasmore.bookserver.controllers;
+package be.thomasmore.bookserver.controllers.book;
 
 import be.thomasmore.bookserver.AbstractIntegrationTest;
 import be.thomasmore.bookserver.model.Book;
