@@ -29,14 +29,14 @@ public abstract class AbstractIntegrationTest {
     @Autowired
     protected MockMvc mockMvc;
 
-    protected MockHttpServletRequestBuilder getMockRequestGetBooks(String url) {
+    protected MockHttpServletRequestBuilder getMockRequestGet(String url) {
         return MockMvcRequestBuilders
                 .get(url)
                 .contentType(MediaType.APPLICATION_JSON);
     }
 
-    protected MockHttpServletRequestBuilder getMockRequestPostBooks(BookDetailedDTO NEW_BOOK_DTO) throws JsonProcessingException {
-        return MockMvcRequestBuilders.post("/api/books/")
+    protected MockHttpServletRequestBuilder getMockRequestPost(String url, BookDetailedDTO NEW_BOOK_DTO) throws JsonProcessingException {
+        return MockMvcRequestBuilders.post(url)
                 .with(csrf())
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)

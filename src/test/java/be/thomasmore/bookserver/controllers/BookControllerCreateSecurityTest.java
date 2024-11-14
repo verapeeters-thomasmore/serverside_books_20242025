@@ -29,7 +29,7 @@ public class BookControllerCreateSecurityTest extends AbstractIntegrationTest {
                 .title(BOOK_TITLE)
                 .build();
 
-        mockMvc.perform(getMockRequestPostBooks(newBookDto))
+        mockMvc.perform(getMockRequestPost("/api/books/", newBookDto))
                 .andExpect(status().isUnauthorized());
 
         assertThat(bookRepository.count()).isEqualTo(0);

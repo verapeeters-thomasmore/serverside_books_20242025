@@ -11,6 +11,7 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.jdbc.Sql;
 
 import jakarta.transaction.Transactional;
+
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -44,7 +45,7 @@ public class BookControllerCreateWithAuthorsTest extends AbstractIntegrationTest
                 .authors(List.of(authorDto))
                 .build();
 
-        mockMvc.perform(getMockRequestPostBooks(newBookDto))
+        mockMvc.perform(getMockRequestPost("/api/books/", newBookDto))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.authors").isEmpty());
 
@@ -68,7 +69,7 @@ public class BookControllerCreateWithAuthorsTest extends AbstractIntegrationTest
                 .authors(List.of(authorDTO))
                 .build();
 
-        mockMvc.perform(getMockRequestPostBooks(newBookDto))
+        mockMvc.perform(getMockRequestPost("/api/books/", newBookDto))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.authors").isEmpty());
 

@@ -33,7 +33,7 @@ public class BookControllerCreateTest extends AbstractIntegrationTest {
                 .title(BOOK_TITLE)
                 .build();
 
-        mockMvc.perform(getMockRequestPostBooks(newBookDto))
+        mockMvc.perform(getMockRequestPost("/api/books/", newBookDto))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1))
                 .andExpect(jsonPath("$.title").value(BOOK_TITLE))
@@ -51,7 +51,7 @@ public class BookControllerCreateTest extends AbstractIntegrationTest {
                 .title(null)
                 .build();
 
-        assertThatThrownBy(() -> mockMvc.perform(getMockRequestPostBooks(newBookDto)));
+        assertThatThrownBy(() -> mockMvc.perform(getMockRequestPost("/api/books/", newBookDto)));
         assertThat(bookRepository.count()).isEqualTo(0);
     }
 
@@ -63,7 +63,7 @@ public class BookControllerCreateTest extends AbstractIntegrationTest {
                 .title("")
                 .build();
 
-        assertThatThrownBy(() -> mockMvc.perform(getMockRequestPostBooks(newBookDto)));
+        assertThatThrownBy(() -> mockMvc.perform(getMockRequestPost("/api/books/", newBookDto)));
         assertThat(bookRepository.count()).isEqualTo(0);
     }
 
@@ -74,7 +74,7 @@ public class BookControllerCreateTest extends AbstractIntegrationTest {
         BookDetailedDTO newBookDto = BookDetailedDTO.builder()
                 .title("Recreate an existing book")
                 .build();
-        MockHttpServletRequestBuilder mockRequest = getMockRequestPostBooks(newBookDto);
+        MockHttpServletRequestBuilder mockRequest = getMockRequestPost("/api/books/", newBookDto);
 
         //first time is ok
         mockMvc.perform(mockRequest).andExpect(status().isOk());
@@ -95,7 +95,7 @@ public class BookControllerCreateTest extends AbstractIntegrationTest {
                 .title(BOOK_TITLE)
                 .build();
 
-        mockMvc.perform(getMockRequestPostBooks(newBookDto))
+        mockMvc.perform(getMockRequestPost("/api/books/", newBookDto))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1)) // not 57!
                 .andExpect(jsonPath("$.title").value(BOOK_TITLE))

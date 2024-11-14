@@ -17,7 +17,7 @@ public class BookControllerGetOneBookTest extends AbstractIntegrationTest {
 
     @Test
     public void getOneBook() throws Exception {
-        mockMvc.perform(getMockRequestGetBooks("/api/books/1"))
+        mockMvc.perform(getMockRequestGet("/api/books/1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1))
                 .andExpect(jsonPath("$.title").value("Test Automation"))
@@ -28,7 +28,7 @@ public class BookControllerGetOneBookTest extends AbstractIntegrationTest {
     @Test
     public void getOneBookNotFound() throws Exception {
         final MvcResult mvcResult =
-                mockMvc.perform(getMockRequestGetBooks("/api/books/9999"))
+                mockMvc.perform(getMockRequestGet("/api/books/9999"))
                         .andExpect(status().isInternalServerError()) // strange!!! I expected isNotFound().....??????
                         .andReturn();
         assertThat(mvcResult.getResponse().getErrorMessage()).isEqualTo("Book with id 9999 does not exist.");

@@ -16,7 +16,7 @@ public class BookControllerGetAllBooksTest extends AbstractIntegrationTest {
 
     @Test
     public void getAllBooks() throws Exception {
-        mockMvc.perform(getMockRequestGetBooks("/api/books"))
+        mockMvc.perform(getMockRequestGet("/api/books"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].id").value(1))
@@ -31,7 +31,7 @@ public class BookControllerGetAllBooksTest extends AbstractIntegrationTest {
 
     @Test
     public void getAllBooksFilter() throws Exception {
-        mockMvc.perform(getMockRequestGetBooks("/api/books?titleKeyWord=from Scratch"))
+        mockMvc.perform(getMockRequestGet("/api/books?titleKeyWord=from Scratch"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].title").value("REST API Automation Testing from Scratch"));
@@ -39,7 +39,7 @@ public class BookControllerGetAllBooksTest extends AbstractIntegrationTest {
 
     @Test
     public void getAllBooksFilterCaseInsensitive() throws Exception {
-        mockMvc.perform(getMockRequestGetBooks("/api/books?titleKeyWord=FROM SCRATCH"))
+        mockMvc.perform(getMockRequestGet("/api/books?titleKeyWord=FROM SCRATCH"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].title").value("REST API Automation Testing from Scratch"));
