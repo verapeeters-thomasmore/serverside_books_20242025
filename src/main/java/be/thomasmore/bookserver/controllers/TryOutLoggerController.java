@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/logging")
-public class TryOutLogger {
-    Logger logger = LoggerFactory.getLogger(TryOutLogger.class);
+public class TryOutLoggerController {
+    Logger logger = LoggerFactory.getLogger(TryOutLoggerController.class);
 
     @Operation(summary = "try out log levels. See application.properties. " +
             "Attention this is not a good request handler concerning REST interface conventions")
