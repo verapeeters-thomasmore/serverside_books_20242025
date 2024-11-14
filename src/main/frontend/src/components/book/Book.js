@@ -7,7 +7,7 @@ export function Book(props) {
     const navigate = useNavigate();
 
     return <Col sx={12} sm={6} lg={4} xl={2} className='mt-3'>
-        <Card className="h-100 shadow-sm"
+        <Card className="h-100 shadow-sm" style={{cursor: "pointer"}}
               onClick={() => navigate(`/books/view/${book.id}`)}>
             <Card.Body>
                 <Card.Title>{book.title}</Card.Title>
