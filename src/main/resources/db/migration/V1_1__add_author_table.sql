@@ -10,6 +10,8 @@ create table book_authors(
                              authors_id integer not null
 );
 
+alter table book alter column author varchar(255) null;
+
 /* convert the data that is already in the author-column of the book-table*/
 insert into author (name)
 select author  from (SELECT distinct author FROM book) as author;
