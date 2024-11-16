@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "ff7736d2-6e1c-43fb-b0cd-85d67b52b5a8",
+		"_postman_id": "732e0350-e0b0-49ce-97df-5b3fd17f7e05",
 		"name": "Books",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13494213"
 	},
 	"item": [
 		{
@@ -25,40 +26,27 @@
 			"response": []
 		},
 		{
-			"name": "list all genres",
+			"name": "list all books filter on title",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/books",
+					"raw": "{{url}}/api/books?titleKeyWord=Or",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"api",
 						"books"
-					]
-				},
-				"description": "geeft lijst van  alle books in de database. \ngeen authentication nodig."
-			},
-			"response": []
-		},
-		{
-			"name": "list all genres without auth",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}/api/books",
-					"host": [
-						"{{url}}"
 					],
-					"path": [
-						"api",
-						"books"
+					"query": [
+						{
+							"key": "titleKeyWord",
+							"value": "Or"
+						}
 					]
 				},
-				"description": "geeft lijst van  alle books in de database. \ngeen authentication nodig."
+				"description": "geeft gefilterde lijst van  alle books in de database. \ngeen authentication nodig."
 			},
 			"response": []
 		},
@@ -103,6 +91,25 @@
 			"response": []
 		},
 		{
+			"name": "unexisting request (ERROR)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/UNEXISTING",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"UNEXISTING"
+					]
+				},
+				"description": "een GET request naar een url die niet voorzien is in de server. \n\nHier krijg je een 404 error (not found)"
+			},
+			"response": []
+		},
+		{
 			"name": "list all authors",
 			"request": {
 				"method": "GET",
@@ -142,51 +149,106 @@
 			"response": []
 		},
 		{
-			"name": "list all books filter on title",
+			"name": "authenticated request",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/books?titleKeyWord=aa",
+					"raw": "{{url}}/api/example_auth_request/",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"api",
-						"books"
+						"example_auth_request",
+						""
+					]
+				},
+				"description": "geeft lijst van  alle books in de database. \ngeen authentication nodig."
+			},
+			"response": []
+		},
+		{
+			"name": "authenticated request without auth   - this request has to fail - but you have to remove JSESSIONID cookie to make this work",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/example_auth_request",
+					"host": [
+						"{{url}}"
 					],
-					"query": [
+					"path": [
+						"api",
+						"example_auth_request"
+					]
+				},
+				"description": "geeft lijst van  alle books in de database. \ngeen authentication nodig."
+			},
+			"response": []
+		},
+		{
+			"name": "authenticate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"console.log(\"============== START authentication\");\r",
+							"\r",
+							"xsrfCookie = pm.cookies.toObject()[\"xsrf-token\"] ;\r",
+							"console.log(xsrfCookie);\r",
+							"pm.collectionVariables.set(\"xsrf-token\", xsrfCookie); \r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"packages": {},
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
 						{
-							"key": "titleKeyWord",
-							"value": "aa"
+							"key": "password",
+							"value": "vera",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "vera",
+							"type": "string"
 						}
 					]
 				},
-				"description": "geeft gefilterde lijst van  alle books in de database. \ngeen authentication nodig."
-			},
-			"response": []
-		},
-		{
-			"name": "unexisting request (ERROR)",
-			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/UNEXISTING",
+					"raw": "{{url}}/api/authenticate",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"api",
-						"UNEXISTING"
+						"authenticate"
 					]
-				},
-				"description": "een GET request naar een url die niet voorzien is in de server. \n\nHier krijg je een 404 error (not found)"
+				}
 			},
 			"response": []
 		},
 		{
-			"name": "create book 7 (no script)",
+			"name": "create book",
 			"event": [
 				{
 					"listen": "test",
@@ -194,7 +256,8 @@
 						"exec": [
 							""
 						],
-						"type": "text/javascript"
+						"type": "text/javascript",
+						"packages": {}
 					}
 				}
 			],
@@ -209,53 +272,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{  \"title\":\"sssssss\"}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url}}/api/books",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"books"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "create book 7",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"const xsrfCookie = postman.getResponseCookie('XSRF-TOKEN');\r",
-							"console.log(xsrfCookie);\r",
-							"postman.setEnvironmentVariable('xsrf-token', xsrfCookie.value);   "
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "X-XSRF-TOKEN",
-						"value": "{{xsrf-token}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{  \"title\":\"sssssss\"}",
+					"raw": "{  \"title\":\"ssssdsfsdfdfdssss\"}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -340,14 +357,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/books/6/authors",
+					"raw": "{{url}}/api/books/7/authors",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"api",
 						"books",
-						"6",
+						"7",
 						"authors"
 					]
 				},
@@ -385,39 +402,6 @@
 						"books",
 						"7",
 						"authors"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "authenticate",
-			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "vera",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "vera",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}/api/authenticate",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"authenticate"
 					]
 				}
 			},
@@ -463,6 +447,10 @@
 		{
 			"key": "url",
 			"value": "http://localhost:8080"
+		},
+		{
+			"key": "xsrf-token",
+			"value": ""
 		}
 	]
 }
