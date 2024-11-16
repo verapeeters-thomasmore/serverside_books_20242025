@@ -4,7 +4,7 @@ import {useAuthenticationContext} from "../../contexts/authenticationcontext";
 import {useMessageContext} from "../../contexts/messagecontext";
 import {useNavigate} from "react-router-dom";
 import {AUTHOR_EMPTY, useAuthorMutations} from "../../api/authorsapi";
-import {ActionButton, ActionButtonBar} from "../../components/ui/ActionButton";
+import {ActionButton, ActionButtonBar, DefaultActionButton} from "../../components/ui/ActionButton";
 import {Form, Row} from "react-bootstrap";
 import {
     AuthorFormGroupCountry,
@@ -40,9 +40,9 @@ export function AuthorCreatePage() {
                     <AuthorFormGroupCountry tempObject={tempObject} onChange={onChange}/>
                 </Row>
                 <ActionButtonBar>
+                    <DefaultActionButton type="submit" variant="primary">add</DefaultActionButton>
                     <ActionButton onClick={() => navigate(`/authors`)}>cancel</ActionButton>
                     <ActionButton onClick={resetTempObject}>reset</ActionButton>
-                    <ActionButton type="submit" variant="primary">add</ActionButton>
                 </ActionButtonBar>
             </Form>
         </>

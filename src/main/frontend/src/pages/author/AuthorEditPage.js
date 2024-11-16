@@ -5,7 +5,7 @@ import {AUTHOR_EMPTY, useAuthor, useAuthorMutations} from "../../api/authorsapi"
 import {useAuthenticationContext} from "../../contexts/authenticationcontext";
 import {useMessageContext} from "../../contexts/messagecontext";
 import {Form, Row} from "react-bootstrap";
-import {ActionButton, ActionButtonBar} from "../../components/ui/ActionButton";
+import {ActionButton, ActionButtonBar, DefaultActionButton} from "../../components/ui/ActionButton";
 import {
     AuthorFormGroupCountry,
     AuthorFormGroupDescription,
@@ -44,9 +44,9 @@ export function AuthorEditPage() {
                 </Row>
 
                 <ActionButtonBar>
+                    <DefaultActionButton type="submit" variant="primary">save</DefaultActionButton>
                     <ActionButton onClick={() => navigate(`/books/view/${author.id}`)}>cancel</ActionButton>
                     <ActionButton onClick={resetTempObject}>reset</ActionButton>
-                    <ActionButton type="submit" variant="primary">save</ActionButton>
                 </ActionButtonBar>
             </Form>
         </>

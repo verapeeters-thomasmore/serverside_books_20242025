@@ -6,7 +6,7 @@ import {useAuthors} from "../../api/authorsapi";
 import {useMessageContext} from "../../contexts/messagecontext";
 import {useForm} from "../../utilities/formutilities";
 import {useNavigate} from "react-router-dom";
-import {ActionButton, ActionButtonBar} from "../../components/ui/ActionButton";
+import {ActionButton, ActionButtonBar, DefaultActionButton} from "../../components/ui/ActionButton";
 import {BookFormGroupAuthors, BookFormGroupDescription, BookFormGroupTitle} from "../../components/book/BookFormGroups";
 
 export function BookCreatePage() {
@@ -43,9 +43,9 @@ export function BookCreatePage() {
                 </Row>
 
                 <ActionButtonBar>
+                    <DefaultActionButton type="submit" variant="primary">add</DefaultActionButton>
                     <ActionButton onClick={() => navigate(`/`)}>cancel</ActionButton>
                     <ActionButton onClick={resetTempObject}>reset</ActionButton>
-                    <ActionButton type="submit" variant="primary">add</ActionButton>
                 </ActionButtonBar>
             </Form>
         </>

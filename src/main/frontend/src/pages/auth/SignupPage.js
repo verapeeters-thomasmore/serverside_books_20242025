@@ -4,7 +4,7 @@ import {useMessageContext} from "../../contexts/messagecontext";
 import {Link, useNavigate} from "react-router-dom";
 import {Col, Form, Row} from "react-bootstrap";
 import {EmailControl, PasswordControl, UsernameControl} from "../../components/auth/AuthControls";
-import {ActionButton, ActionButtonBar} from "../../components/ui/ActionButton";
+import {ActionButton, ActionButtonBar, DefaultActionButton} from "../../components/ui/ActionButton";
 import {useForm} from "../../utilities/formutilities";
 
 export function SignupPage() {
@@ -33,14 +33,14 @@ export function SignupPage() {
                     <PasswordControl onChange={onChange} tempObject={tempObject}/>
                     <EmailControl onChange={onChange} tempObject={tempObject}/>
                 </Row>
-                <Row>
-                    <Col>already registered? <Link to="/login">go to login</Link></Col>
-                </Row>
                 <ActionButtonBar>
+                    <DefaultActionButton variant="primary" type="submit">signup</DefaultActionButton>
                     <ActionButton onClick={() => navigate(`/`)}>cancel</ActionButton>
                     <ActionButton onClick={resetTempObject}>reset</ActionButton>
-                    <ActionButton variant="primary" type="submit">signup</ActionButton>
                 </ActionButtonBar>
+                <Row>
+                    <Col className="text-end">already registered? <Link to="/login">go to login</Link></Col>
+                </Row>
             </Form>
         </>
     )

@@ -4,7 +4,7 @@ import React, {useCallback} from "react";
 import {useMessageContext} from "../../contexts/messagecontext";
 import {Col, Form, Row} from "react-bootstrap";
 import {Link, useNavigate} from "react-router-dom";
-import {ActionButton, ActionButtonBar} from "../../components/ui/ActionButton";
+import {ActionButton, ActionButtonBar, DefaultActionButton} from "../../components/ui/ActionButton";
 import {useForm} from "../../utilities/formutilities";
 
 export function LoginPage() {
@@ -32,14 +32,14 @@ export function LoginPage() {
                     <UsernameControl onChange={onChange} tempObject={tempObject}/>
                     <PasswordControl onChange={onChange} tempObject={tempObject}/>
                 </Row>
-                <Row>
-                    <Col>not registered? <Link to="/signup">go to signup</Link></Col>
-                </Row>
                 <ActionButtonBar>
+                    <DefaultActionButton type="submit">login</DefaultActionButton>
                     <ActionButton onClick={() => navigate(`/`)}>cancel</ActionButton>
                     <ActionButton onClick={resetTempObject}>reset</ActionButton>
-                    <ActionButton variant="primary" type="submit">login</ActionButton>
                 </ActionButtonBar>
+                <Row>
+                    <Col className="text-end">not registered? <Link to="/signup">go to signup</Link></Col>
+                </Row>
             </Form>
         </>
     )

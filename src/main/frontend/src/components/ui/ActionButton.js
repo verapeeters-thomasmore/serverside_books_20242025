@@ -1,15 +1,25 @@
 import {Button, Row} from "react-bootstrap";
 import React from "react";
 
-
-//default ActionButton is outline-primary
-//Main Button should be primary
-export function ActionButton(props) {
+//default ActionButton is wider and primary
+export function DefaultActionButton(props) {
     const {children} = props;
 
     return (
+        <div className="m-1 col-auto w-100">
+            <Button className="w-100" variant="primary" size="lg" {...props}>
+                {children}
+            </Button>
+        </div>
+    );
+}
+
+export function ActionButton(props) {
+    const {children, defaultButton} = props;
+
+    return (
         <div className="m-1 col-auto">
-            <Button size="lg" variant="outline-primary" {...props}>
+            <Button variant="outline-primary" size="lg" {...props}>
                 {children}
             </Button>
         </div>
@@ -19,10 +29,10 @@ export function ActionButton(props) {
 //a horizontal bar with centered buttons
 //fill up with ActionButtons
 export function ActionButtonBar(props) {
-    const {children}=props;
+    const {children} = props;
     return (
-        <Row className="m-5 justify-content-center">
+        <Row className="mt-5 justify-content-center">
             {children}
         </Row>
-        )
+    )
 }

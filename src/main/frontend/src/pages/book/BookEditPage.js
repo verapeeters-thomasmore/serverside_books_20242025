@@ -6,7 +6,7 @@ import {useAuthors} from "../../api/authorsapi";
 import {useMessageContext} from "../../contexts/messagecontext";
 import {useNavigate, useParams} from "react-router-dom";
 import {useForm} from "../../utilities/formutilities";
-import {ActionButton, ActionButtonBar} from "../../components/ui/ActionButton";
+import {ActionButton, ActionButtonBar, DefaultActionButton} from "../../components/ui/ActionButton";
 import {BookFormGroupAuthors, BookFormGroupDescription, BookFormGroupTitle} from "../../components/book/BookFormGroups";
 
 
@@ -51,9 +51,9 @@ export function BookEditPage() {
                 </Row>
 
                 <ActionButtonBar>
+                    <DefaultActionButton type="submit" variant="primary">save</DefaultActionButton>
                     <ActionButton onClick={() => navigate(`/books/view/${book.id}`)}>cancel</ActionButton>
                     <ActionButton onClick={resetTempObject}>reset</ActionButton>
-                    <ActionButton type="submit" variant="primary">save</ActionButton>
                 </ActionButtonBar>
             </Form>
         </>
