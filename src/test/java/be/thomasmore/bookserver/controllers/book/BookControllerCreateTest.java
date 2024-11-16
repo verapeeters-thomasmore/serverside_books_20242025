@@ -18,7 +18,6 @@ import static org.springframework.test.context.jdbc.Sql.ExecutionPhase.AFTER_TES
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SuppressWarnings("SpringTestingSqlInspection")
 @Sql(scripts = "/sql/books/clean_books.sql", executionPhase = AFTER_TEST_METHOD)
 public class BookControllerCreateTest extends AbstractIntegrationTest {
 

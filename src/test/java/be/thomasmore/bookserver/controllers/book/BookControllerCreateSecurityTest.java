@@ -15,7 +15,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.context.jdbc.Sql.ExecutionPhase.AFTER_TEST_METHOD;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SuppressWarnings("SpringTestingSqlInspection")
 @Sql(scripts = "/sql/books/clean_books.sql", executionPhase = AFTER_TEST_METHOD)
 public class BookControllerCreateSecurityTest extends AbstractIntegrationTest {
 

@@ -26,7 +26,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Even if the client (frontend) passes an author-array, the relation is NOT updated.
  */
 
-@SuppressWarnings("SpringTestingSqlInspection")
 @Sql(scripts = {"/sql/books/create_2_books.sql", "/sql/authors/create_2_authors.sql"})
 @Sql(scripts = {"/sql/books/clean_books.sql", "/sql/authors/clean_authors.sql"}, executionPhase = AFTER_TEST_METHOD)
 public class BookControllerCreateWithAuthorsTest extends AbstractIntegrationTest {
