@@ -47,8 +47,7 @@ public class SecurityConfiguration {
                 .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
-                        .requestMatchers("/api/genre/**").authenticated()
-                        .requestMatchers("/api/genres/**").authenticated()
+                        .requestMatchers("/api/example_auth_request/**").authenticated()
                         .requestMatchers("/api/authenticate/**").authenticated()
                         .requestMatchers("/api/signup/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/**").permitAll()
