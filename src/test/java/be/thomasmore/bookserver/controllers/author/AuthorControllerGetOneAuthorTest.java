@@ -13,7 +13,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SuppressWarnings("SpringTestingSqlInspection")
 @Sql("/sql/authors/create_2_authors.sql")
 @Sql(scripts = "/sql/authors/clean_authors.sql", executionPhase = AFTER_TEST_METHOD)
-public class AutorControllerGetOneAuthorTest extends AbstractIntegrationTest {
+public class AuthorControllerGetOneAuthorTest extends AbstractIntegrationTest {
 
     @Test
     public void getOneAuthor() throws Exception {
